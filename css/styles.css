@@ -11,6 +11,7 @@
     --font-alternative: 'Raleway', sans-serif;
 }
 body {
+    padding-top: 72px;
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
     background-color: #FFFFFF;
@@ -24,13 +25,20 @@ img {
     padding: 0 15px;
 }
 .header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    min-height: 72px;
+    background-color: #FFFFFF;
     border-bottom: 1px solid #E7E9FC;
     box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
         0px 1px 1px rgba(46, 47, 66, 0.16),
         0px 1px 6px rgba(46, 47, 66, 0.08);
 }
 .top-line {
-    display: flex;
+        display: flex;
     align-items: center;
 }
 .main-nav {
@@ -76,9 +84,24 @@ img {
     line-height: 1.5;
     letter-spacing: 0.02em;
     color: var(--brand-color);
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-link:hover, .nav-link:focus {
     color: var(--nav-color);
+}
+.item {
+    position: relative;
+}
+.page::after {
+    position: absolute;
+    content: '';
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--nav-color);
 }
 .address {
     font-style: normal;
@@ -93,6 +116,8 @@ img {
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .address-link:active {
     color: var(--text-color);
@@ -151,10 +176,48 @@ img {
         line-height: 1.5;  
         letter-spacing: 0.04em;
         color: #FFFFFF;
+
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button:hover, .button:focus {
     background-color: var(--nav-color);
 } 
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 47, 66, 0.4);
+}
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 408px;
+    min-height: 584px;
+    padding: 24px;
+    background-color: #FFFFFF;
+}
+.modal-btn {
+    position: absolute;
+    border: transparent;
+    /*background-color: #FFFFFF;*/
+}
+.modal-icon {
+    display: inline-block;
+    stroke: var(--brand-color);
+    fill: var(--brand-color);
+    z-index: 2;
+}
+.modal-icon:hover {
+
+}
 .strengths {
     position: absolute;
     width: 1px;
@@ -308,6 +371,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .snl:hover,
 .snl:focus {
@@ -349,6 +414,8 @@ img {
     align-items: center;
     justify-content: center;
     color: var(--icon-color);
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .customers-link:hover,
 .customers-link:focus {
@@ -409,6 +476,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .snl-footer-icon {
     fill: var(--footer-text-color);
@@ -451,6 +520,8 @@ img {
         font-size: 16px;
         line-height: 1.5;
         cursor: pointer;
+
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .filter-button:hover,
 .filter-button:focus {
@@ -470,6 +541,35 @@ width: calc((100% - 48px)/3);
 }
 .card-item {
     display: block;
+}
+.overlay-block {
+    position: relative;
+    overflow: hidden;
+}
+.overlay-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transform: translate(0, 100%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0;
+    padding-top: 40px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 164px;
+    font-weight: 400;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        color: var(--background-color-gray);
+        background-color: var(--logo-web-color);
+}
+.card-item:hover .overlay-card,
+.card-item:focus .overlay-card {
+    transform: translate(0, 0);
 }
 .card-item:hover,
 .card-item:focus {
